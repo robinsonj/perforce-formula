@@ -4,6 +4,7 @@ driver:
 
 provisioner:
   name: salt_solo
+  is_file_root: true
 
 platforms:
   - name: ubuntu-14.04
@@ -11,5 +12,9 @@ platforms:
 
 suites:
   - name: default
-    run_list:
-    attributes:
+    pillars:
+    provisioner:
+      state_top:
+        base:
+          '*':
+            - p4

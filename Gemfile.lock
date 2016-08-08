@@ -32,3 +32,6 @@ DEPENDENCIES
   kitchen-salt
   kitchen-vagrant
   test-kitchen
+
+BUNDLED WITH
+   1.12.5
