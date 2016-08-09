@@ -2,7 +2,25 @@
 
 {% set os_config = salt['grains.filter_by'](
   {
-
+    'Debian': {
+      'pkgrepo': {
+        'humanname':  'Perforce Package Server',
+        'name':       'deb http://package.perforce.com/apt/ubuntu/ ' ~ grains.oscodename ~ ' release',
+        'dist':       grains.oscodename,
+        'file':       '/etc/apt/sources.list.d/perforce.list',
+        'key_url':    'http://package.perforce.com/perforce.pubkey'
+      }
+    },
+    'RedHat': {
+      'pkgrepo': {
+        'humanname':  'Perforce Package Server',
+        'name':       'perforce.repo',
+        'baseurl':    'http://package.perforce.com/yum/rhel/$releasever/$basearch',
+        'gpgkey':     'http://package.perforce.com/perforce.pubkey',
+        'gpgcheck':   1
+      }
+    },
+    'default': {}
   },
   grain='os_family',
   merge=salt['pillar.get']('p4:lookup'))
@@ -10,4 +28,4 @@
 
 {% do default_settings.p4.update(os_config) %}
 
-{% set p4 = default_settings %}
+{% set p4 = default_settings.p4 %}
