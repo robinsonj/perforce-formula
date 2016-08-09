@@ -1,0 +1,14 @@
+p4:
+  pkgrepo:
+    humanname: Perforce Package Server
+    name:
+    dist:
+    file:
+    key_url:
+  client:
+    package:
+      name:     helix-cli
+      version:  ''
+    package_base:
+      name:     helix-cli-base
+      version:  ''

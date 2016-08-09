@@ -1,0 +1,13 @@
+{% import_yaml 'p4/defaults.yml' as default_settings %}
+
+{% set os_config = salt['grains.filter_by'](
+  {
+
+  },
+  grain='os_family',
+  merge=salt['pillar.get']('p4:lookup'))
+%}
+
+{% do default_settings.p4.update(os_config) %}
+
+{% set p4 = default_settings %}
