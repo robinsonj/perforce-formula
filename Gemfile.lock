@@ -2,6 +2,7 @@ GEM
   remote: https://rubygems.org/
   specs:
     artifactory (2.3.3)
+    diff-lcs (1.2.5)
     kitchen-salt (0.0.23)
       test-kitchen (~> 1.4)
     kitchen-vagrant (0.20.0)
@@ -12,10 +13,39 @@ GEM
       mixlib-versioning
     mixlib-shellout (2.2.6)
     mixlib-versioning (1.1.0)
+    multi_json (1.12.1)
     net-scp (1.2.1)
       net-ssh (>= 2.6.5)
     net-ssh (3.2.0)
+    net-telnet (0.1.1)
+    rspec (3.5.0)
+      rspec-core (~> 3.5.0)
+      rspec-expectations (~> 3.5.0)
+      rspec-mocks (~> 3.5.0)
+    rspec-core (3.5.2)
+      rspec-support (~> 3.5.0)
+    rspec-expectations (3.5.0)
+      diff-lcs (>= 1.2.0, < 2.0)
+      rspec-support (~> 3.5.0)
+    rspec-its (1.2.0)
+      rspec-core (>= 3.0.0)
+      rspec-expectations (>= 3.0.0)
+    rspec-mocks (3.5.0)
+      diff-lcs (>= 1.2.0, < 2.0)
+      rspec-support (~> 3.5.0)
+    rspec-support (3.5.0)
     safe_yaml (1.0.4)
+    serverspec (2.36.0)
+      multi_json
+      rspec (~> 3.0)
+      rspec-its
+      specinfra (~> 2.53)
+    sfl (2.2)
+    specinfra (2.60.3)
+      net-scp
+      net-ssh (>= 2.7, < 4.0)
+      net-telnet
+      sfl
     test-kitchen (1.10.2)
       mixlib-install (~> 1.0, >= 1.0.4)
       mixlib-shellout (>= 1.2, < 3.0)
@@ -31,6 +61,7 @@ PLATFORMS
 DEPENDENCIES
   kitchen-salt
   kitchen-vagrant
+  serverspec
   test-kitchen
 
 BUNDLED WITH
