@@ -1,13 +1,5 @@
-require 'serverspec'
+require 'package_helper'
 
-set :backend, :exec
-
-describe 'P4 CLI' do
-  describe package('helix-cli') do
-    it { should be_installed }
-  end
-
-  describe package('helix-cli-base') do
-    it { should be_installed }
-  end
+describe 'Default' do
+  it_behaves_like :p4_cli
 end
