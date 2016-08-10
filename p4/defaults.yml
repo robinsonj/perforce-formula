@@ -6,3 +6,10 @@ p4:
     package_base:
       name:     helix-cli-base
       version:  ''
+  server:
+    package:
+      name:     helix-p4d
+      version:  ''
+    package_base:
+      name:     helix-p4d-base
+      version:  ''

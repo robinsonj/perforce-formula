@@ -13,3 +13,15 @@ shared_examples_for :p4_cli do
     end
   end
 end
+
+shared_examples_for :p4_server do
+  describe 'P4 Server' do
+    describe package('helix-p4d') do
+      it { should be_installed }
+    end
+
+    describe package('helix-p4d-base') do
+      it { should be_installed }
+    end
+  end
+end
