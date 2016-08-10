@@ -1,7 +1,6 @@
 {% from 'p4/map.jinja' import p4 with context %}
 
 include:
-  - p4.pkgrepo
   - p4.client.package_base
 
 p4_cli_pkg:

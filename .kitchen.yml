@@ -18,3 +18,10 @@ suites:
         base:
           '*':
             - p4
+  - name: client
+    pillars:
+    provisioner:
+      state_top:
+        base:
+          '*':
+            - p4.client
