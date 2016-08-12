@@ -1,4 +1,11 @@
 p4:
+  broker:
+    package:
+      name:     helix-broker
+      version:  ''
+    package_base:
+      name:     helix-broker-base
+      version:  ''
   client:
     package:
       name:     helix-cli
