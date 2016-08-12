@@ -1,11 +1,16 @@
 p4:
   broker:
+    base_install: False
     package:
       name:     helix-broker
       version:  ''
     package_base:
       name:     helix-broker-base
       version:  ''
+    config_file:
+      user:     perforce
+      group:    perforce
+      mode:     644
   client:
     package:
       name:     helix-cli
