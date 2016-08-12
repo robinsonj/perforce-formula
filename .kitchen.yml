@@ -42,3 +42,18 @@ suites:
         base:
           '*':
             - p4.broker
+  - name: broker-base
+    pillars:
+      top.sls:
+        base:
+          '*':
+            - p4
+      p4.sls:
+        p4:
+          broker:
+            base_install: True
+    provisioner:
+      state_top:
+        base:
+          '*':
+            - p4.broker

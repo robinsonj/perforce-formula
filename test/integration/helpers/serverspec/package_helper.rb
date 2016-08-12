@@ -26,6 +26,18 @@ shared_examples_for :p4_broker do
   end
 end
 
+shared_examples_for :p4_broker_base do
+  describe 'P4 Broker Base' do
+    describe package('helix-broker') do
+      it { should_not be_installed }
+    end
+
+    describe package('helix-broker-base') do
+      it { should be_installed }
+    end
+  end
+end
+
 shared_examples_for :p4_server do
   describe 'P4 Server' do
     describe package('helix-p4d') do
