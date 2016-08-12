@@ -12,6 +12,7 @@ p4:
       group:    perforce
       mode:     644
   client:
+    base_install: False
     package:
       name:     helix-cli
       version:  ''
@@ -19,6 +20,7 @@ p4:
       name:     helix-cli-base
       version:  ''
   server:
+    base_install: False
     package:
       name:     helix-p4d
       version:  ''
