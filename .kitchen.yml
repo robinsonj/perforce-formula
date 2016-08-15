@@ -21,6 +21,7 @@ suites:
         base:
           '*':
             - p4
+
   - name: client
     provisioner:
       pillars:
@@ -28,6 +29,22 @@ suites:
         base:
           '*':
             - p4.client
+  - name: client-base
+    provisioner:
+      pillars:
+        top.sls:
+          base:
+            '*':
+              - p4
+        p4.sls:
+          p4:
+            client:
+              base_install: True
+      state_top:
+        base:
+          '*':
+            - p4.client
+
   - name: server
     provisioner:
       pillars:
@@ -35,6 +52,22 @@ suites:
         base:
           '*':
             - p4.server
+  - name: server-base
+    provisioner:
+      pillars:
+        top.sls:
+          base:
+            '*':
+              - p4
+        p4.sls:
+          p4:
+            server:
+              base_install: True
+      state_top:
+        base:
+          '*':
+            - p4.server
+
   - name: broker
     provisioner:
       pillars:
