@@ -15,44 +15,44 @@ platforms:
 
 suites:
   - name: default
-    pillars:
     provisioner:
+      pillars:
       state_top:
         base:
           '*':
             - p4
   - name: client
-    pillars:
     provisioner:
+      pillars:
       state_top:
         base:
           '*':
             - p4.client
   - name: server
-    pillars:
     provisioner:
+      pillars:
       state_top:
         base:
           '*':
             - p4.server
   - name: broker
-    pillars:
     provisioner:
+      pillars:
       state_top:
         base:
           '*':
             - p4.broker
   - name: broker-base
-    pillars:
-      top.sls:
-        base:
-          '*':
-            - p4
-      p4.sls:
-        p4:
-          broker:
-            base_install: True
     provisioner:
+      pillars:
+        top.sls:
+          base:
+            '*':
+              - p4
+        p4.sls:
+          p4:
+            broker:
+              base_install: True
       state_top:
         base:
           '*':
