@@ -22,10 +22,13 @@
     },
     'default': {}
   },
-  grain='os_family',
-  merge=salt['pillar.get']('p4:lookup'))
+  grain='os_family')
 %}
 
 {% do default_settings.p4.update(os_config) %}
 
-{% set p4 = default_settings.p4 %}
+{% set p4 = salt['pillar.get'](
+  'p4',
+  default=default_settings.p4,
+  merge=True)
+%}
