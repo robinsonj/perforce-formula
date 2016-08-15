@@ -4,7 +4,7 @@ driver:
 
 provisioner:
   name: salt_solo
-  is_file_root: true
+  formula: p4
 
 platforms:
   - name: ubuntu-14.04
