@@ -12,5 +12,6 @@ perforce_broker_{{ broker_name }}_config:
     - template: jinja
     - require:
       - pkg:    {{ p4.broker.package_base.name }}
+      - user:   {{ p4.broker.config_file.user }}
 
 {% endfor %}
