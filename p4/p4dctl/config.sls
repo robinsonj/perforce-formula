@@ -10,7 +10,6 @@ perforce_p4dctl_config:
     - template: jinja
     - require:
       - pkg:    {{ p4.p4dctl.package.name }}
-      - user:   {{ p4.p4dctl.config_file.user }}
 
 perforce_p4dctl_config_d:
   file.directory:

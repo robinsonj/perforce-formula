@@ -32,13 +32,13 @@ p4:
       name:       helix-p4dctl
       version:    ''
     config_file:
-      user:       perforce
-      group:      perforce
+      user:       root
+      group:      root
       mode:       644
       path:       /etc/perforce/p4dctl.conf
       source:     salt://p4/p4dctl/files/p4dctl.conf.jinja
     config_file_d:
-      user:       perforce
-      group:      perforce
+      user:       root
+      group:      root
       mode:       755
       path:       /etc/perforce/p4dctl.conf.d/
