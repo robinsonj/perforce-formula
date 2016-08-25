@@ -27,3 +27,7 @@ p4:
     package_base:
       name:       helix-p4d-base
       version:    ''
+  p4dctl:
+    package:
+      name:       helix-p4dctl
+      version:    ''

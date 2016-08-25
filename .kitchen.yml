@@ -90,3 +90,11 @@ suites:
         base:
           '*':
             - p4.broker
+
+  - name: p4dctl
+    provisioner:
+      pillars:
+      state_top:
+        base:
+          '*':
+            - p4.p4dctl

@@ -81,3 +81,11 @@ shared_examples_for :p4_server_base do
     end
   end
 end
+
+shared_examples_for :p4_p4dctl do
+  describe 'P4 p4dctl' do
+    describe package('helix-p4dctl') do
+      it { should be_installed }
+    end
+  end
+end
