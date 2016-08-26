@@ -16,7 +16,9 @@ def run(name, action):
         salt '*' p4dctl.run p4broker status
     '''
 
-    cmd = ('/sbin/p4dctl {0} {1}').format(action, name)
+    p4dctl_path = '/sbin/p4dctl'
+
+    cmd = ('{0} {1} {2}').format(p4dctl_path, action, name)
 
     return not __salt__['cmd.run'](cmd, python_shell=False)
 
