@@ -1,3 +1,10 @@
+def p4dctl(name, action):
+    p4dctl_path = '/sbin/p4dctl'
+    cmd         = '{0} {1} {2}'.format(p4dctl_path, action, name)
+
+    return __salt__['cmd.run'](cmd, python_shell=False)
+
+
 def run(name, action):
     '''
     Run p4dctl with the specified service name and action.
@@ -16,11 +23,7 @@ def run(name, action):
         salt '*' p4dctl.run p4broker status
     '''
 
-    p4dctl_path = '/sbin/p4dctl'
-
-    cmd = ('{0} {1} {2}').format(p4dctl_path, action, name)
-
-    return not __salt__['cmd.run'](cmd, python_shell=False)
+    return not p4dctl(name, action)
 
 
 def status(name):
@@ -89,3 +92,22 @@ def restart(name):
     '''
 
     return __salt__['p4dctl.run'](name, 'restart')
+
+def list(name=None):
+    '''
+    List the perforce services managed by p4dctl.
+
+    If no name is passed, list all managed services.
+
+    name
+        Service name as configured by p4dctl.conf.
+
+    CLI Example:
+
+    .. code-block:: bash
+
+        salt '*' p4dctl.list
+        salt '*' p4dctl.list p4d-server
+    '''
+
+    return p4dctl(name, 'list')
