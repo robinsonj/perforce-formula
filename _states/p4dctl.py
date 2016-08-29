@@ -66,14 +66,14 @@ def running(name, init_delay=None, **kwargs):
     service_start = __salt__['p4dctl.start'](name)
 
     if not service_start:
-        ret['result'] = False
-        ret['comment'] = 'Service {0} failed to start.'.format(name)
+        ret['result']   = False
+        ret['comment']  = 'Service {0} failed to start.'.format(name)
     else:
-        ret['comment'] = 'Service {0} started.'.format(name)
+        ret['comment']  = 'Service {0} started.'.format(name)
 
     if init_delay:
         time.sleep(init_delay)
-        ret['comment'] = (
+        ret['comment']  = (
                 '{0}\nDelayed return for {1} seconds.'
                 .format(ret['comment'], init_delay)
         )
