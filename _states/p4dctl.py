@@ -24,15 +24,12 @@ def _available(name, ret):
     return available
 
 
-def running(name, sig=None, init_delay=None, **kwargs):
+def running(name, init_delay=None, **kwargs):
     '''
     Ensure the named perforce service is running.
 
     name
         Service name as configured by p4dctl.conf
-
-    sig
-        TODO
 
     init_delay
         TODO
