@@ -52,10 +52,33 @@ def running(name, sig=None, init_delay=None, **kwargs):
         ret['comment']  = exc.strerror
         return ret
 
+    before_status = __salt__['p4dctl.status'](name)
+
+    # Check if the service is already running.
+    if before_status:
+        ret['comment'] = 'Service {0} is already running.'.format(name)
+        return ret
+
     # If in test mode, don't do any work.
     if __opts__['test']:
         ret['result']   = None
         ret['comment']  = 'Service {0} is set to start'.format(name)
         return ret
+
+    # Start the service.
+    service_start = __salt__['p4dctl.start'](name)
+
+    if not service_start:
+        ret['result'] = False
+        ret['comment'] = 'Service {0} failed to start.'.format(name)
+    else:
+        ret['comment'] = 'Service {0} started.'.format(name)
+
+    if init_delay:
+        time.sleep(init_delay)
+        ret['comment'] = (
+                '{0}\nDelayed return for {1} seconds.'
+                .format(ret['comment'], init_delay)
+        )
 
     return ret
