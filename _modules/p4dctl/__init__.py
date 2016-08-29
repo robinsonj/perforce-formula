@@ -1,8 +1,11 @@
-def p4dctl(name, action):
+def p4dctl(name, action, show_output=False):
     p4dctl_path = '/sbin/p4dctl'
     cmd         = '{0} {1} {2}'.format(p4dctl_path, action, name)
 
-    return __salt__['cmd.run'](cmd, python_shell=False)
+    if show_output:
+        return __salt__['cmd.run'](cmd, python_shell=False)
+    else:
+        return not __salt__['cmd.retcode'](cmd, python_shell=False)
 
 
 def run(name, action):
@@ -23,7 +26,7 @@ def run(name, action):
         salt '*' p4dctl.run p4broker status
     '''
 
-    return not p4dctl(name, action)
+    return p4dctl(name, action)
 
 
 def status(name):
@@ -110,4 +113,4 @@ def list(name=None):
         salt '*' p4dctl.list p4d-server
     '''
 
-    return p4dctl(name, 'list')
+    return p4dctl(name, 'list', True)
