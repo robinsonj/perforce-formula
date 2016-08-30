@@ -5,6 +5,8 @@ Start and stop perforce services
 TODO: Add documentation
 '''
 
+import re
+
 from salt.exceptions import CommandExecutionError
 
 def _available(name, ret):
@@ -18,8 +20,15 @@ def _available(name, ret):
     available = __salt__['p4dctl.status'](name)
 
     if not available:
-        ret['result'] = False
-        ret['comment'] = 'The perforce service named {0} is not available.'.format(name)
+        status_output = __salt__['p4dctl.status'](name, True)
+
+        not_running_re = re.compile('service not running')
+
+        if not_running_re.search(status_output) is not None:
+            available = True
+        else:
+            ret['result'] = False
+            ret['comment'] = 'The perforce service named {0} is not available.'.format(name)
 
     return available
 

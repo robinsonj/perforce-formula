@@ -8,7 +8,7 @@ def p4dctl(name, action, show_output=False):
         return not __salt__['cmd.retcode'](cmd, python_shell=False)
 
 
-def run(name, action):
+def run(name, action, show_output=False):
     '''
     Run p4dctl with the specified service name and action.
 
@@ -26,10 +26,10 @@ def run(name, action):
         salt '*' p4dctl.run p4broker status
     '''
 
-    return p4dctl(name, action)
+    return p4dctl(name, action, show_output)
 
 
-def status(name):
+def status(name, show_output=False):
     '''
     Return the status of a perforce service managed by p4dctl.
 
@@ -43,7 +43,7 @@ def status(name):
         salt '*' p4dctl.status <service name>
     '''
 
-    return __salt__['p4dctl.run'](name, 'status')
+    return __salt__['p4dctl.run'](name, 'status', show_output)
 
 
 def start(name):
