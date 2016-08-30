@@ -41,4 +41,4 @@ p4:
       user:       root
       group:      root
       mode:       755
-      path:       /etc/perforce/p4dctl.conf.d/
+      path:       /etc/perforce/p4dctl.conf.d
