@@ -98,3 +98,24 @@ suites:
         base:
           '*':
             - p4.p4dctl
+  - name: p4dctl-config
+    provisioner:
+      pillars:
+        top.sls:
+          base:
+            '*':
+              - p4
+        p4.sls:
+          p4:
+            p4dctl:
+              config:
+                example:
+                  source: salt://p4/p4dctl/files/example.conf
+              services:
+                running:
+                  - p4d-example
+      state_top:
+        base:
+          '*':
+            - p4.server
+            - p4.p4dctl
