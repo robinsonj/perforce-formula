@@ -1,0 +1,13 @@
+p4:
+  server:
+    base_install: True
+  broker:
+    base_install: True
+  p4dctl:
+    config:
+      main:
+        source: salt://p4/p4dctl/files/example.conf
+    services:
+      running:
+        - p4d-example
+        - p4broker-example
