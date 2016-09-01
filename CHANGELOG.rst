@@ -6,6 +6,13 @@ perforce-formula
 Unreleased
 ----------
 
+Changes
+#######
+
+- Handle the Amazon-built CentOs AWS AMI's. For some reason, though labeled as
+  'CentOS' images and still belonging to the 'RedHat' family, the machine lists
+  its 'os' grain as 'Amazon.'
+
 -------------------
 v0.0.0 (2016-08-31)
 -------------------

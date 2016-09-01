@@ -25,6 +25,11 @@
   grain='os_family')
 %}
 
+# Handle special snowflake AWS-Centos images.
+{% if grains['os_family'] == 'RedHat' and grains['os'] == 'Amazon' %}
+  {% do os_config.pkgrepo.update({'baseurl': 'http://package.perforce.com/yum/rhel/6/$basearch'}) %}
+{% endif %}
+
 {% do default_settings.p4.update(os_config) %}
 
 {% set p4 = salt['pillar.get'](
