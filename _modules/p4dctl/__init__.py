@@ -1,5 +1,5 @@
 def p4dctl(name, action, show_output=False):
-    p4dctl_path = '/sbin/p4dctl'
+    p4dctl_path = 'p4dctl'
     cmd         = '{0} {1} {2}'.format(p4dctl_path, action, name)
 
     if show_output:

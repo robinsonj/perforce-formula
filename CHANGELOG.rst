@@ -6,12 +6,18 @@ perforce-formula
 Unreleased
 ----------
 
-Changes
+Changed
 #######
 
-- Handle the Amazon-built CentOs AWS AMI's. For some reason, though labeled as
+* Handle the Amazon-built CentOs AWS AMI's. For some reason, though labeled as
   'CentOS' images and still belonging to the 'RedHat' family, the machine lists
   its 'os' grain as 'Amazon.'
+
+Fixed
+#####
+
+* Don't specify a path to `p4dctl` until an OS-map is implemented to handle
+  cases where it is installed to different locations.
 
 -------------------
 v0.0.0 (2016-08-31)
