@@ -6,6 +6,12 @@ perforce-formula
 Unreleased
 ----------
 
+Added
+#####
+
+* Add a 'p4' execution module for running arbitrary perforce client commands
+  against the target server.
+
 Changed
 #######
 

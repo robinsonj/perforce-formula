@@ -2,6 +2,21 @@
 def run(command, port, user):
     '''
     Run p4 client commands against the target server.
+
+    command
+        Perforce command and arguments to be executed.
+
+    port
+        address:port to be connected to.
+
+    user
+        Perforce user to execute commands.
+
+    CLI Example:
+
+    .. code-block:: bash
+
+        salt '*' p4.run 'users -l' localhost:1666 perforce
     '''
 
     p4_path = 'p4'
