@@ -1,3 +1,25 @@
+import salt.utils
+
+def _p4_path():
+    '''
+    Return the filesystem path to the p4 client binary.
+
+    Perforce packages may install the binary to /opt/perforce/[s]bin/ and create
+    a symlink from different parts of the system (/bin/, /sbin/, /usr/bin/,
+    etc.).
+    '''
+
+    return salt.utils.which('p4')
+
+
+def _run_p4(cmd):
+    '''
+    '''
+
+    cmdstr = ' '.join([_p4_path()] + [i for i in cmd])
+
+    return __salt__['cmd.run'](cmdstr, python_shell=False)
+
 
 def run(command, port, user):
     '''
@@ -19,8 +41,13 @@ def run(command, port, user):
         salt '*' p4.run 'users -l' localhost:1666 perforce
     '''
 
-    p4_path = 'p4'
-    options = '-p {0} -u {1}'.format(port, user)
-    cmd     = '{0} {1} {2}'.format(p4_path, options, command)
+    options = []
 
-    return __salt__['cmd.run'](cmd, python_shell=False)
+    if port:
+        options += ['--port', port]
+    if user:
+        options += ['--user', user]
+
+    cmd = options + [command]
+
+    return _run_p4(cmd)
