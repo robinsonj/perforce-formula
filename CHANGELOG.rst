@@ -11,6 +11,8 @@ Added
 
 * Add a 'p4' execution module for running arbitrary perforce client commands
   against the target server.
+* Add a 'p4user' state module to create users against a configured perforce
+  server.
 
 Changed
 #######

@@ -12,16 +12,16 @@ def _p4_path():
     return salt.utils.which('p4')
 
 
-def _run_p4(cmd):
+def _run_p4(cmd, stdin):
     '''
     '''
 
     cmdstr = ' '.join([_p4_path()] + [i for i in cmd])
 
-    return __salt__['cmd.run'](cmdstr, python_shell=False)
+    return __salt__['cmd.run'](cmdstr, stdin=stdin, python_shell=False)
 
 
-def run(command, port, user):
+def run(command, port, user, stdin=None):
     '''
     Run p4 client commands against the target server.
 
@@ -50,4 +50,4 @@ def run(command, port, user):
 
     cmd = options + [command]
 
-    return _run_p4(cmd)
+    return _run_p4(cmd, stdin)
