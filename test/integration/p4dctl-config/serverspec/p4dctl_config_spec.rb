@@ -8,7 +8,7 @@ describe 'p4dctl-config' do
     it { should be_running }
 
     its(:count) { should eq 1 }
-    its(:user)  { should eq 'nobody' }
+    its(:user)  { should eq 'perforce' }
   end
 
   describe file('/etc/perforce/p4dctl.conf.d/example.conf') do
