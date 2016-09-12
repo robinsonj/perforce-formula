@@ -1,3 +1,5 @@
+from __future__ import absolute_import
+
 import salt.utils
 
 def _p4_path():

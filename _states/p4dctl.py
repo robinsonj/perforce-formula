@@ -5,6 +5,8 @@ Start and stop perforce services
 TODO: Add documentation
 '''
 
+from __future__ import absolute_import
+
 import re
 
 from salt.exceptions import CommandExecutionError
