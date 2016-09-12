@@ -1,26 +1,28 @@
 from __future__ import absolute_import
 
 import salt.utils
+import logging
 
-def _p4_path():
+log = logging.getLogger(__name__)
+
+try:
+    from P4 import P4,P4Exception
+    HAS_P4PYTHON = True
+except ImportError:
+    HAS_P4PYTHON = False
+    log.error('P4 module could not import p4python.')
+
+__virtualname__ = 'p4'
+
+def __virtual__():
     '''
-    Return the filesystem path to the p4 client binary.
-
-    Perforce packages may install the binary to /opt/perforce/[s]bin/ and create
-    a symlink from different parts of the system (/bin/, /sbin/, /usr/bin/,
-    etc.).
+    Set the module name. Returns an error if p4python is unavailable.
     '''
 
-    return salt.utils.which('p4')
+    if HAS_P4PYTHON:
+        return __virtualname__
 
-
-def _run_p4(cmd, stdin):
-    '''
-    '''
-
-    cmdstr = ' '.join([_p4_path()] + [i for i in cmd])
-
-    return __salt__['cmd.run'](cmdstr, stdin=stdin, python_shell=False)
+    return (False, 'p4 execution module not loaded. "p4python" library could not be imported.')
 
 
 def run(command, port, user, stdin=None):
@@ -43,13 +45,18 @@ def run(command, port, user, stdin=None):
         salt '*' p4.run 'users -l' localhost:1666 perforce
     '''
 
-    options = []
+    p4 = P4()
 
-    if port:
-        options += ['--port', port]
-    if user:
-        options += ['--user', user]
+    p4.port = port
+    p4.user = user
 
-    cmd = options + [command]
+    try:
+        p4.connect()
+        result = p4.run(command)
+    except P4Exception as p4err:
+        log.error(p4err)
+        result = False
+    finally:
+        p4.disconnect()
 
-    return _run_p4(cmd, stdin)
+    return result
