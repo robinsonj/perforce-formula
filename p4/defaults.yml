@@ -42,3 +42,6 @@ p4:
       group:      root
       mode:       755
       path:       /etc/perforce/p4dctl.conf.d
+  p4python:
+    require:
+      pkg:        python-dev

@@ -9,6 +9,11 @@
         'dist':       grains.oscodename,
         'file':       '/etc/apt/sources.list.d/perforce.list',
         'key_url':    'http://package.perforce.com/perforce.pubkey'
+      },
+      'p4python': {
+        'require': {
+          'pkg': 'python-dev'
+        }
       }
     },
     'RedHat': {
@@ -18,6 +23,11 @@
         'baseurl':    'http://package.perforce.com/yum/rhel/$releasever/$basearch',
         'gpgkey':     'http://package.perforce.com/perforce.pubkey',
         'gpgcheck':   1
+      },
+      'p4python': {
+        'require': {
+          'pkg': 'python-devel'
+        }
       }
     },
     'default': {}
