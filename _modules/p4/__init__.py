@@ -25,12 +25,9 @@ def __virtual__():
     return (False, 'p4 execution module not loaded. "p4python" library could not be imported.')
 
 
-def run(command, port, user, stdin=None):
+def run(port, user, command, args=[], cmd_input=None):
     '''
     Run p4 client commands against the target server.
-
-    command
-        Perforce command and arguments to be executed.
 
     port
         address:port to be connected to.
@@ -38,11 +35,20 @@ def run(command, port, user, stdin=None):
     user
         Perforce user to execute commands.
 
+    command
+        Perforce command and arguments to be executed.
+
+    args
+        Arguments to the command specified by <command>.
+
+    cmd_input
+        STDIN for the specified command. Usually a completed form, etc.
+
     CLI Example:
 
     .. code-block:: bash
 
-        salt '*' p4.run 'users -l' localhost:1666 perforce
+        salt '*' p4.run users '-l' localhost:1666 perforce
     '''
 
     p4 = P4()
@@ -52,10 +58,19 @@ def run(command, port, user, stdin=None):
 
     try:
         p4.connect()
-        result = p4.run(command)
+        p4.input = cmd_input
+
+        log.info('Running command: {0} {1}'.format(command, args))
+        log.info('Command input: {0}'.format(cmd_input))
+
+        result = p4.run(command, args)
     except P4Exception as p4err:
-        log.error(p4err)
-        result = False
+        log.error('Caught P4 error: {0}'.format(p4err))
+
+        for e in p4.errors:
+            log.error(e)
+
+        result = (False, p4.errors)
     finally:
         p4.disconnect()
 

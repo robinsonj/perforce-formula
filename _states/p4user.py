@@ -12,7 +12,7 @@ import logging
 log = logging.getLogger(__name__)
 
 def present(name,
-            type='standard',
+            user_type='standard',
             server='localhost:1666',
             super_user='super',
             super_pass='perforce'
@@ -23,6 +23,10 @@ def present(name,
 
     name
         Name of the user to manage.
+
+    user_type
+        Perforce spec type of the user. Can be 'standard,' 'service,' or
+        'operator.' Value is not checked for validity. Defaults to 'standard.'
 
     server
         Perforce server to connect to.
@@ -40,22 +44,29 @@ def present(name,
             'result':   True,
             'comment':  ''}
 
-    info = __salt__['p4.run']('users {0}'.format(name), server, super_user)
+    info = __salt__['p4.run'](server, super_user, 'users', name)
 
     log.info('User info in server {0}: {1}'.format(server, info))
 
-    if '- no such user(s)' in info:
+    if info[0]:
+        # User already exists.
+        log.info('Perforce user {0} already exists.'.format(name))
+        log.debug('Perforce user {0} info: {1}'.format(name, info))
+
+        ret['comment'] = 'Perforce user "{0}" is present and up to date.'.format(name)
+    else:
         # User needs to be created.
-        form_spec   = __salt__['p4.run']('user -o {0}'.format(name), server, super_user)
-        create_ret  = __salt__['p4.run']('user -fi', server, super_user, stdin=form_spec)
+        form_spec   = __salt__['p4.run'](server, super_user, 'user', '-o').pop(0)
+        log.debug('User form: {0}'.format(form_spec))
+        form_spec['User'] = name
+        form_spec['Type'] = user_type
+        form_spec['FullName'] = name
+        log.debug('User form input: {0}'.format(form_spec))
+        create_ret  = __salt__['p4.run'](server, super_user, 'user', '-fi', cmd_input=form_spec)
         log.info('User create output: {0}'.format(create_ret))
 
         ret['changes'][name] = 'Created'
         ret['changes']['output'] = create_ret
         ret['comment'] = 'Perforce user "{0}" created.'.format(name)
-    else:
-        # User already exists.
-        log.info('Perforce user {0} already exists.'.format(name))
-        ret['comment'] = 'Perforce user "{0}" is present and up to date.'.format(name)
 
     return ret

@@ -4,7 +4,10 @@
 
 perforce_server_{{ user.server }}_user_{{ user_name }}:
   p4user.present:
-    - name:     {{ user_name }}
-    - server:   {{ user.server }}
+    - name:       {{ user_name }}
+    - user_type:  {{ user.get('type', 'standard') }}
+    - server:     {{ user.server }}
+    - super_user: {{ user.get('super_user', 'super') }}
+    - super_pass: {{ user.get('super_pass', '') }}
 
 {% endfor %}
