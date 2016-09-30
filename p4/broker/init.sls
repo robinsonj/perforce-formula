@@ -7,3 +7,4 @@ include:
   - p4.broker.package
 {% endif %}
   - p4.broker.config
+  - p4.broker.cert

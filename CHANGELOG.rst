@@ -13,6 +13,7 @@ Added
   against the target server.
 * Add a 'p4user' state module to create users against a configured perforce
   server.
+* Add a state module for managing p4broker SSL certificates and configuration.
 
 Changed
 #######

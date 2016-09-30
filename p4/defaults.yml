@@ -11,6 +11,12 @@ p4:
       user:       perforce
       group:      perforce
       mode:       644
+    certs:
+      p4ssldir:
+        path:     /etc/perforce/sslkeys
+        user:     root
+        group:    root
+        mode:     700
   client:
     base_install: False
     package:
