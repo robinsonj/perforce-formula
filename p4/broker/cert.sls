@@ -15,5 +15,6 @@ perforce_broker_sslkeys:
     {% if 'fingerprint' in p4.broker.certs.p4ssldir %}
     - fingerprint: {{ p4.broker.certs.p4ssldir.fingerprint }}
     {% endif %}
+    - user:     {{ p4.broker.certs.p4ssldir.get('user', 'root') }}
     - require:
       - file:   perforce_broker_ssl_d

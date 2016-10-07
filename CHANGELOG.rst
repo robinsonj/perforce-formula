@@ -14,6 +14,8 @@ Added
 * Add a 'p4user' state module to create users against a configured perforce
   server.
 * Add a state module for managing p4broker SSL certificates and configuration.
+  - Allow for non-root users to create and own the certificate files and
+    directories.
 
 Changed
 #######
