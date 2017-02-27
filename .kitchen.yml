@@ -45,6 +45,14 @@ suites:
           '*':
             - p4.client
 
+  - name: client-api
+    provisioner:
+      pillars:
+      state_top:
+        base:
+          '*':
+            - p4.client_api
+
   - name: server
     provisioner:
       pillars:

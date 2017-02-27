@@ -25,6 +25,17 @@ p4:
     package_base:
       name:       helix-cli-base
       version:    ''
+  client_api:
+    install:
+      path:       /opt/perforce
+      user:       root
+      group:      root
+    archive:
+      path:         /opt/perforce/download
+      version:      p4api-2016.2.1487173
+      host:         https://cdist2.perforce.com/perforce/
+      version:      r16.2
+      source_hash:  sha256=0c7efa107b049c737b922dabd2dd14319a0c0f19003a123d45161141183c3ad7
   server:
     base_install: False
     package:

@@ -16,6 +16,7 @@ Added
 * Add a state module for managing p4broker SSL certificates and configuration.
   - Allow for non-root users to create and own the certificate files and
     directories.
+* Add a state module for installing the Perforce C/C++ API library.
 
 Changed
 #######

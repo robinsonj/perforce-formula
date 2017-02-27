@@ -20,6 +20,11 @@ Installs the helix-broker package.
 
 Installs the helix-cli package.
 
+``p4.client_api``
+-----------------
+
+Installs the Perforce C/C++ API zip archive.
+
 ``p4.p4dctl``
 -------------
 
@@ -36,12 +41,12 @@ Testing
 This formula uses test-kitchen and kitchen-salt to test the formula.
 
 ``kitchen test [name]``
-----------------
+-----------------------
 
 Builds, runs, and tears down the full test suite.
 
 ``kitchen converge [name]``
---------------------
+---------------------------
 
 Builds the VM(s) and executes the salt formula.
 
