@@ -16,4 +16,4 @@ p4_client_api_archive:
 p4_client_api_archive_symlink:
   file.symlink:
     - name:         {{ capi.install.path ~ '/p4api' }}
-    - target:       {{ capi.archive.path ~ '/' ~ capi.archive.version }}
+    - target:       {{ capi.archive.path ~ '/' ~ capi.archive.build }}
