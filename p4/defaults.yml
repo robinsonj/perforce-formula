@@ -32,10 +32,10 @@ p4:
       group:      root
     archive:
       path:         /opt/perforce/download
-      build:        p4api-2016.2.1487173
+      build:        p4api-2016.2.1509269
       host:         https://cdist2.perforce.com/perforce/
       version:      r16.2
-      source_hash:  sha256=0c7efa107b049c737b922dabd2dd14319a0c0f19003a123d45161141183c3ad7
+      source_hash:  sha256=8b89a57d0a94717608b563325124b516ba348c0310f4422c01b84f630ace8bfc
   server:
     base_install: False
     package:
